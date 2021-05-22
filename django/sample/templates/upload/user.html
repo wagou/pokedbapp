@@ -1,0 +1,73 @@
+{% extends "uplayout.html" %}
+
+{% block title %}ユーザーページ | Poke-db.com{% endblock title %}
+
+{% block content %}
+    <h2 class="mt-4 border-bottom">ユーザーページ</h4>
+    <h4 class="mt-4 border-bottom">アクセスキー</h4>
+    あなたのアクセスキーは以下です。<br>
+    {{ user.key }}<br>
+    アクセスキーは公開しないでください。<br>
+    <h4 class="mt-4 border-bottom">集計数</h4>
+    現在、{{ userbattle }}戦分のデータがあります。
+    <h4 class="mt-4 border-bottom">あなたの対戦結果</h4>
+    <form action="/csv" method="post">
+      {% csrf_token %}
+      <input type="hidden" value={{ user.key }} name="key">
+      <input type="submit" id="button" name="button" value="CSVファイルをダウンロード">
+    </form>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">日時</th>
+          <th scope="col">#1</th>
+          <th scope="col">#2</th>
+          <th scope="col">#3</th>
+          <th scope="col">#4</th>
+          <th scope="col">#5</th>
+          <th scope="col">#6</th>
+          <th scope="col">種類</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detail in details %}
+        <tr>
+          <th scope="row">{{ detail.date }}</th>
+          <td>{{ detail.poke1 }}</td>
+          <td>{{ detail.poke2 }}</td>
+          <td>{{ detail.poke3 }}</td>
+          <td>{{ detail.poke4 }}</td>
+          <td>{{ detail.poke5 }}</td>
+          <td>{{ detail.poke6 }}</td>
+          <td>{{ detail.battletype }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- <h4 class="mt-4 border-bottom">あなたのKP集計結果</h4>
+    実装予定です。 -->
+    <!-- <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">KP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for kp in kps %}
+        <tr>
+          <th scope="row">{{ kp.name }}</th>
+          <td>
+            <script language="JavaScript">
+            var b,c,n;
+            b = {{ userpoke }};
+            c = {{ userbattle }};
+            n = b / c * 100.0;
+            document.write(b,"(",n.toFixed(2),"%)")
+            </script>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table> -->
+{% endblock content %}
