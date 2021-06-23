@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*- 
-import cv2
-import numpy as np
+import cv2, requests
 from time import sleep
-import requests
-from PIL import Image
 
 def camera_check():
     print('Switchの画面を探しています...')
@@ -44,7 +41,7 @@ def cap():
     capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
     temp = cv2.imread("templates/temp.png", 0)
     beforesend = False
-    url = 'https://poke-db.com/upload' + num
+    url = 'https://app.roishi.com/upload' + num
     while(True):
         ret, frame = capture.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
