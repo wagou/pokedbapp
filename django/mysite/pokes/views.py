@@ -113,7 +113,7 @@ def howto(request):
     return render(request, 'upload/howto.html',{})
 
 def logintw(request):
-    oauth_callback = "https://app.roishi.com/back"
+    oauth_callback = "https://app.roishi.com/pokeapp/back"
     twitter = OAuth1Session(consumer_key, consumer_secret)
     response = twitter.post(
         'https://api.twitter.com/oauth/request_token',
@@ -147,6 +147,6 @@ def back(request):
         user = User.objects.get(twid=str(access_token['user_id']))
     # 新規登録の場合オブジェクト作成
     else:
-        user = User(twid=user_id_str,key=randomname(20))
+        user = User(twid=str(access_token['user_id']),key=randomname(20))
         user.save()
-    return redirect('https://app.roishi.com/user?user_id='+user.key)
+    return redirect('https://app.roishi.com/pokeapp/user?user_id='+user.key)
