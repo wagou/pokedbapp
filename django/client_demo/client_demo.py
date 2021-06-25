@@ -12,7 +12,7 @@ def cap():
             break
     temp = cv2.imread("templates/temp.png", 0)
     beforesend = False
-    url = 'https://app.roishi.com/upload' + num
+    url = 'https://app.roishi.com/pokeapp/upload' + num
     frame = cv2.imread("test.png")
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # 比較方法:cv2.TM_CCOEFF_NORMED
