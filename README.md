@@ -2,7 +2,7 @@
 このwebアプリケーションはポケットモンスターソード・シールドの対戦を補助するアプリケーションです。以前に作成したものを再構築し再公開したものです。
 
 公開先はこちら→https://app.roishi.com/pokeapp/
-説明はこちら→https://roishi.com/wp/archives/193
+説明はこちら→https://roishi.com/archives/193
 
 以下は以前に作成した時の紹介です。
 
